@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#1f7a84">
+    <title>MindPulse – Student Stress Meter</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Figtree:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <span class="logo">MindPulse</span>
+            <svg class="pulse" viewBox="0 0 200 32" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M0 16h60l8-12 10 26 9-20 6 6h107" />
+            </svg>
+            <button class="btn" id="th" aria-label="Switch light or dark theme">◐</button>
+        </header>
+        <p class="mute" style="margin:0">No sign-up. Your results stay in this browser only.</p>
+        <nav id="nav"></nav>
+        <main id="main"></main>
+        <p class="mute" style="margin-top:28px">MindPulse is a self-check, not a diagnosis. If you are struggling,
+            please speak to your university counselling service or a health professional.</p>
+    </div>
+    <script src="js/storage.js"></script>
+    <script src="js/dass.js"></script>
+    <script src="js/core.js"></script>
+    <script src="js/checkin.js"></script>
+    <script src="js/trends.js"></script>
+    <script src="js/relax.js"></script>
+    <script src="js/journal.js"></script>
+    <script src="js/home.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
