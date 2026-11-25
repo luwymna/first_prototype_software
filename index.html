@@ -6,31 +6,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#1f7a84">
     <title>MindPulse – Student Stress Meter</title>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Figtree:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+    <script>try { var th = JSON.parse(localStorage.getItem("mp_theme")); document.documentElement.setAttribute("data-bs-theme", th || (matchMedia("(prefers-color-scheme:dark)").matches ? "dark" : "light")) } catch (e) { }</script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <div class="wrap">
-        <header>
-            <span class="logo">MindPulse</span>
-            <svg class="pulse" viewBox="0 0 200 32" preserveAspectRatio="none" aria-hidden="true">
-                <path d="M0 16h60l8-12 10 26 9-20 6 6h107" />
-            </svg>
-            <button class="btn" id="th" aria-label="Switch light or dark theme">◐</button>
-        </header>
-        <p class="mute" style="margin:0">No sign-up. Your results stay in this browser only.</p>
-        <nav id="nav"></nav>
+    <header class="glass">
+        <div class="bar"><span class="logo">MindPulse</span>
+            <nav id="nav" aria-label="Main"></nav>
+            <div class="tools">
+                <div class="dropdown"><button class="btn btn-outline-secondary dropdown-toggle" id="lgb" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false" aria-label="Language">English</button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><button class="dropdown-item" data-lang="en">English</button></li>
+                        <li><button class="dropdown-item" data-lang="ms">Bahasa Melayu</button></li>
+                    </ul>
+                </div> <button class="btn btn-outline-secondary" id="th"
+                    aria-label="Switch light or dark theme">◐</button>
+            </div>
+        </div>
+    </header>
+    <p class="strip text-body-secondary" data-i18n="tagline">Anonymous. No sign-up. Your results stay in this browser
+        only.</p>
+    <div class="container-xl">
         <main id="main"></main>
-        <p class="mute" style="margin-top:28px">MindPulse is a self-check, not a diagnosis. If you are struggling,
-            please speak to your university counselling service or a health professional.</p>
+        <footer class="foot text-body-secondary">
+            <p data-i18n="foot">Sound recordings by InspectorJ and innorecords via freesound.org. MindPulse is a
+                self-check, not a diagnosis. If you are struggling, please speak to your university counselling service
+                or a health professional.</p>
+        </footer>
     </div>
+    <!-- Reused components (pinned versions, loaded from cdnjs) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/store2/2.14.2/store2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-statistics@7.8.3/dist/simple-statistics.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/dist/umd/i18next.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
     <script src="js/storage.js"></script>
+    <script src="locales/en.js"></script>
+    <script src="locales/ms.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="data/sounds.js"></script>
+    <script src="js/logic.js"></script>
     <script src="js/dass.js"></script>
     <script src="js/core.js"></script>
     <script src="js/checkin.js"></script>
     <script src="js/trends.js"></script>
+    <script src="js/report.js"></script>
     <script src="js/relax.js"></script>
     <script src="js/journal.js"></script>
     <script src="js/home.js"></script>

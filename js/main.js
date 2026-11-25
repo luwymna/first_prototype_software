@@ -1,31 +1,8 @@
-// Load saved theme and apply if present
-const th = load("mp_theme", null);
-if (th) document.documentElement.dataset.theme = th;
-
-// Theme toggle button
-$("#th").onclick = () => {
-  const current = document.documentElement.dataset.theme || (matchMedia("(prefers-color-scheme:dark)").matches ? "dark" : "light");
-  const next = current === "dark" ? "light" : "dark";
-  document.documentElement.dataset.theme = next;
-  save("mp_theme", next);
-};
-
-// Keyboard shortcuts for check‑in options (1‑4)
-document.addEventListener("keydown", e => {
-  if (
-    view === "checkin" &&
-    qi > 0 && qi <= 21 &&
-    /^[1-4]$/.test(e.key) &&
-    !e.target.matches("textarea,input,select")
-  ) {
-    const btn = document.querySelector(`.opt[data-n="${e.key - 1}"]`);
-    btn && btn.click();
-  }
-});
-
-// Set initial view based on URL hash
-const h0 = (location.hash || "").slice(1);
-if (VIEWS[h0]) view = h0;
-
-// Render the UI
+const root = document.documentElement;
+$("#th").onclick = () => { const n = root.dataset.bsTheme === "dark" ? "light" : "dark"; root.dataset.bsTheme = n; save("mp_theme", n) };
+document.addEventListener("keydown", e => { if (view === "checkin" && qi > 0 && qi <= 21 && /^[1-4]$/.test(e.key) && !e.target.matches("textarea,input,select")) { const b = document.querySelector(`.opt[data-n="${e.key - 1}"]`); b && b.click() } });
+const h0 = (location.hash || "").slice(1); if (VIEWS[h0]) view = h0;
+applyStatic(); document.querySelectorAll("[data-lang]").forEach(b => b.onclick = () => setLang(b.dataset.lang));
 render();
+
+function syncLang() { const LN = { en: "English", ms: "Bahasa Melayu" }; $("#lgb").textContent = LN[i18next.language] || "English"; document.querySelectorAll("[data-lang]").forEach(b => b.classList.toggle("active", b.dataset.lang === i18next.language)) }

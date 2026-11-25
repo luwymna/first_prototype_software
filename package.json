@@ -1,0 +1,11 @@
+{
+  "name": "mindpulse",
+  "private": true,
+  "scripts": { "test": "vitest run", "a11y": "node a11y/axe-scan.mjs" },
+  "devDependencies": {
+    "axe-core": "^4.9.1",
+    "playwright": "^1.47.0",
+    "simple-statistics": "7.8.3",
+    "vitest": "^2.1.0"
+  }
+}

@@ -1,10 +1,10 @@
 /* ---------- Journal ---------- */
-function vJournal(){
-  const j=load("mp_journal",[]);
-  $("#main").innerHTML=`<div class="card"><h2>Private journal</h2><p class="mute">Stored only in this browser. Write whatever is on your mind.</p><label for="mood" class="mute">Mood</label> <select id="mood" class="btn"><option>😞</option><option>😕</option><option selected>😐</option><option>🙂</option><option>😄</option></select> <button class="btn" id="pr">Need a prompt?</button><br><label for="jt" class="mute">What’s on your mind?</label><textarea id="jt" placeholder="Today I felt…"></textarea><p><button class="btn primary" id="js">Save entry</button></p></div>
-  <div class="card"><h3>Past entries</h3>${j.length?j.slice().reverse().map(e=>`<div class="entry"><small>${e.m||""} ${new Date(e.t).toLocaleString()}</small><p style="margin:.3em 0;white-space:pre-wrap"></p><button class="del" data-t="${e.t}">Delete</button></div>`).join(""):'<p class="mute">No entries yet. Your first one will appear here.</p>'}</div>`;
-  const ps=document.querySelectorAll(".entry p");j.slice().reverse().forEach((e,i)=>ps[i].textContent=e.x);
-  $("#pr").onclick=()=>{const P=["What is weighing on me most today?","What is one thing that went okay this week?","What would I say to a friend feeling this way?","What can I let go of until tomorrow?"];$("#jt").placeholder=P[Math.floor(Math.random()*P.length)]};
-  $("#js").onclick=()=>{const x=$("#jt").value.trim();if(!x)return $("#jt").focus();j.push({t:Date.now(),x,m:$("#mood").value});save("mp_journal",j);vJournal()};
-  document.querySelectorAll(".del").forEach(b=>b.onclick=()=>{save("mp_journal",j.filter(e=>String(e.t)!==b.dataset.t));vJournal()});
+function vJournal() {
+  const j = load("mp_journal", []), mo = t("j.moods", { returnObjects: true });
+  $("#main").innerHTML = `<div class="card card-body mb-3"><h2>${t("j.title")}</h2><p class="text-body-secondary">${t("j.intro")}</p><div class="mb-2 text-body-secondary" id="ml">${t("j.feel")}</div><div class="btn-group mb-3 flex-wrap" role="group" aria-labelledby="ml">${mo.map((m, i) => `<input type="radio" class="btn-check" name="mood" id="m${i}" value="${i}" autocomplete="off" ${i === 2 ? "checked" : ""}><label class="btn btn-outline-secondary" for="m${i}">${m}</label>`).join("")}</div><br><button class="btn btn-outline-secondary mb-2" id="pr">${t("j.prompt")}</button><br><label for="jt" class="text-body-secondary">${t("j.mind")}</label><textarea class="form-control" id="jt" placeholder="${t("j.ph")}"></textarea><p><button class="btn btn-primary" id="js">${t("j.save")}</button></p></div>
+  <div class="card card-body mb-3"><h3>${t("j.past")}</h3>${j.length ? j.slice().reverse().map(e => `<div class="entry"><small>${typeof e.m === "number" && mo[e.m] ? mo[e.m] + " · " : ""}${new Date(e.t).toLocaleString()}</small><p style="margin:.3em 0;white-space:pre-wrap"></p><button class="del" data-t="${e.t}">${t("j.del")}</button></div>`).join("") : `<p class="text-body-secondary">${t("j.empty")}</p>`}</div>`;
+  const ps = document.querySelectorAll(".entry p"); j.slice().reverse().forEach((e, i) => ps[i].textContent = e.x);
+  $("#pr").onclick = () => { const P = t("j.prompts", { returnObjects: true }); $("#jt").placeholder = P[Math.floor(Math.random() * P.length)] };
+  $("#js").onclick = () => { const x = $("#jt").value.trim(); if (!x) return $("#jt").focus(); j.push({ t: Date.now(), x, m: +(document.querySelector("input[name=mood]:checked") || {}).value }); save("mp_journal", j); vJournal() };
+  document.querySelectorAll(".del").forEach(b => b.onclick = () => { save("mp_journal", j.filter(e => String(e.t) !== b.dataset.t)); vJournal() });
 }
