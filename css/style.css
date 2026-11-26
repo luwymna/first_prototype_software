@@ -1,16 +1,18 @@
 /* Bootstrap 5.3 supplies layout, cards, buttons, forms, tables, progress bars and dark mode.
    This file only sets brand colours and the few MindPulse-specific pieces. */
 :root {
-   --bs-primary: #1f7a84;
-   --bs-primary-rgb: 31, 122, 132;
+   --bs-primary: #0f5c63;
+   --bs-primary-rgb: 15, 92, 99;
    --bs-body-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Figtree, system-ui, sans-serif;
-   --bs-body-bg: #eef3f4;
-   --bs-body-color: #14303a;
+   --bs-body-bg: #f5efe0;                       /* cream */
+   --bs-body-color: #0d3b40;                    /* deep teal text */
+   --bs-secondary-color: rgba(13, 59, 64, .72);
+   --bs-border-color: #d9cfb4;                  /* cream border */
    --ink: var(--bs-body-color);
    --mute: var(--bs-secondary-color);
    --line: var(--bs-border-color);
-   --accent: #17636c;
-   --soft: #d9ecee;
+   --accent: #0f5c63;                           /* deep teal */
+   --soft: #e8e0c8;                             /* deeper cream for hover, selected, bands */
    --warn: #a3365f;
    --ok: #1f7a56;
    --mid: #8a5a00;
@@ -19,10 +21,12 @@
 }
 
 [data-bs-theme=dark] {
-   --bs-body-bg: #0f1e24;
-   --bs-body-color: #e4f0f2;
-   --accent: #5cc3cc;
-   --soft: #1f3a41;
+   --bs-body-bg: #0b2b2f;                       /* deep teal */
+   --bs-body-color: #f3ecd9;                    /* cream text */
+   --bs-secondary-color: rgba(243, 236, 217, .72);
+   --bs-border-color: #2a5459;
+   --accent: #e8dcb5;                           /* cream accent */
+   --soft: #1a4a50;
    --warn: #ee7fa4;
    --ok: #6fd0a8;
    --mid: #e5b24a
@@ -51,9 +55,9 @@ h3,
 }
 
 [data-bs-theme=dark] .btn-primary {
-   --bs-btn-color: #06242a;
-   --bs-btn-hover-color: #06242a;
-   --bs-btn-active-color: #06242a
+   --bs-btn-color: #0b2b2f;
+   --bs-btn-hover-color: #0b2b2f;
+   --bs-btn-active-color: #0b2b2f
 }
 
 .btn-outline-primary {
@@ -78,7 +82,7 @@ h3,
 }
 
 [data-bs-theme=dark] .btn-outline-secondary {
-   --bs-btn-active-color: #06242a
+   --bs-btn-active-color: #0b2b2f
 }
 
 .progress-bar {
@@ -224,7 +228,7 @@ h2:focus {
    padding: .75rem 1rem;      /* space above and below, inside the bar */
    display: flex;
    align-items: center;
-   gap: .5rem 1rem;           /* row gap, column gap */
+   gap: .75rem 1rem;           /* row gap, column gap */
    flex-wrap: wrap
 }
 
@@ -281,6 +285,18 @@ nav button[aria-current=true] {
    .tools {
       margin-left: auto
    }
+
+      nav {
+      overflow-x: visible;
+      gap: 0;
+      justify-content: space-between
+   }
+
+   nav button {
+      flex: 1 1 auto;
+      padding: .5rem .35rem;
+      font-size: .85rem
+   }
 }
 
 .strip {
@@ -304,14 +320,14 @@ main {
 }
 
 .card {
-   --bs-card-bg: #fff;
+   --bs-card-bg: #fffbf1;
    border: 0;
    border-radius: 28px;
    box-shadow: 0 1px 3px rgba(20, 48, 58, .06)
 }
 
 [data-bs-theme=dark] .card {
-   --bs-card-bg: #17292f
+   --bs-card-bg: #12393e;
 }
 
 .card-body {
@@ -520,4 +536,16 @@ main {
 .vol-range:hover::-webkit-slider-thumb { transform: scale(1.1) }
 .vol-range:active::-webkit-slider-thumb { transform: scale(1.15) }
 .vol-range:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px }
+
+/* ---- memory game ---- */
+.memory-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; max-width: 420px }
+.memory-card { aspect-ratio: 1; display: grid; place-items: center; margin: 0; padding: 0;
+  border: 1px solid var(--line); border-radius: 16px; background: var(--bs-body-bg);
+  color: var(--mute); font-size: 1.6rem; line-height: 1; cursor: pointer;
+  transition: transform .2s, background .2s, border-color .2s }
+.memory-card:hover:not(:disabled) { border-color: var(--accent); transform: translateY(-2px) }
+.memory-card.flipped { background: var(--soft); border-color: var(--accent); color: var(--ink) }
+.memory-card.matched { border-color: var(--ok) }
+.memory-card:disabled { opacity: 1 }
+.memory-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px }
 

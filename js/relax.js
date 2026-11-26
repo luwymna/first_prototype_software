@@ -314,34 +314,33 @@ function minis() {
           mv = 0;
 
       ga.innerHTML = `
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:360px">
-          ${d.map((e, i) => `<button class="opt btn btn-outline-primary text-start" data-i="${i}" style="font-size:1.8rem;text-align:center;height:64px;padding:0" aria-label="${t("rx.card", { n: i + 1 })}">?</button>`).join("")}
+        <div class="memory-grid">
+          ${d.map((e, i) => `<button class="memory-card" data-i="${i}" aria-label="${t("rx.card", { n: i + 1 })}">?</button>`).join("")}
         </div>
-        <p class="text-body-secondary" id="mm">${t("rx.memHelp", { n: 0 })}</p>`;
+        <p class="text-body-secondary mt-3 mb-0" id="mm">${t("rx.memHelp", { n: 0 })}</p>`;
 
       ga.querySelectorAll("[data-i]").forEach(b => {
         b.onclick = () => {
           if (open.length > 1 || b.disabled || open.includes(b)) return;
-
           b.textContent = d[+b.dataset.i];
+          b.classList.add("flipped");
           open.push(b);
-
           if (open.length === 2) {
             mv++;
             const [a, c] = open;
             if (a.textContent === c.textContent) {
               a.disabled = c.disabled = true;
+              a.classList.add("matched"); c.classList.add("matched");
               done++;
               open = [];
             } else {
               setTimeout(() => {
                 a.textContent = c.textContent = "?";
+                a.classList.remove("flipped"); c.classList.remove("flipped");
                 open = [];
               }, 700);
             }
-            $("#mm").textContent = done === 6
-              ? t("rx.memDone", { n: mv })
-              : t("rx.memHelp", { n: mv });
+            $("#mm").textContent = done === 6 ? t("rx.memDone", { n: mv }) : t("rx.memHelp", { n: mv });
           }
         };
       });
