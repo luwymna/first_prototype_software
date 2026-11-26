@@ -61,6 +61,12 @@ describe("language files", () => {
     const missing = Object.keys(EN).map(stripPlural).filter(k => !ms.has(k));
     expect(missing).toEqual([]);
   });
+  it("Malay DASS items are complete (not cut off)", () => {
+    MS.q.forEach((s, i) => {
+      expect(s.length).toBeGreaterThan(EN.q[i].length * 0.6);
+      expect((s.match(/\(/g) || []).length).toBe((s.match(/\)/g) || []).length);
+    });
+  });
   it("no empty strings", () => {
     for (const lang of [EN, MS]) for (const v of Object.values(lang)) {
       for (const s of [].concat(v)) expect(String(s).trim().length).toBeGreaterThan(0);

@@ -18,7 +18,7 @@ const EN = {
     "tip.stress": "Break big tasks into 25-minute blocks with 5-minute rests, and protect your sleep.",
     "tip.anxiety": "Try slow breathing for a few minutes, and limit caffeine late in the day.",
     "tip.depression": "Small steps count: get daylight, move a little, and tell someone how you’re really doing.",
-    "help": "<b>Need to talk to someone?</b> In Malaysia, Befrienders KL is on 03-7627 2929 and Talian Kasih on 15999, or visit your university counselling centre. Elsewhere, contact your local crisis service.",
+    "help": "<b>Need to talk to someone?</b> In Malaysia, Befrienders KL is on 03-7627 2929 and Talian Kasih on 15999, or visit your university counselling centre. If you are in immediate danger, call 999. Elsewhere, contact your local crisis service.",
     "home.welcomeTitle": "Welcome to MindPulse",
     "home.welcomeBody": "A private three-minute check on stress, anxiety and low mood, with ways to unwind straight after. No account needed.",
     "home.first": "Take your first check-in",
@@ -174,6 +174,9 @@ const EN = {
         "What is one thing that went okay this week?",
         "What would I say to a friend feeling this way?",
         "What can I let go of until tomorrow?"
-    ]
+    ],
+    "snd.fail": "This sound could not be played. Check your connection or try another sound.",
+    "snd.lib": "The audio library failed to load. Check your connection and reload the page.",
+    "pdf.fail": "The PDF could not be created. Check your connection and try again."
 };
 if (typeof module !== "undefined") module.exports = EN;

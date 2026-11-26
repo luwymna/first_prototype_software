@@ -6,3 +6,14 @@ applyStatic(); document.querySelectorAll("[data-lang]").forEach(b => b.onclick =
 render();
 
 function syncLang() { const LN = { en: "English", ms: "Bahasa Melayu" }; $("#lgb").textContent = LN[i18next.language] || "English"; document.querySelectorAll("[data-lang]").forEach(b => b.classList.toggle("active", b.dataset.lang === i18next.language)) }
+/* Mobile: the title, language and theme row scrolls away; only the nav row stays pinned */
+const glass = document.querySelector(".glass");
+function pinNav() {
+  const small = matchMedia("(max-width:700px)").matches;
+  const pad = parseFloat(getComputedStyle(document.querySelector(".bar")).paddingBottom);
+  // hide the first row, but leave the same space above the buttons as there is below them
+  glass.style.top = small ? `-${Math.max($("#nav").offsetTop - pad, 0)}px` : "0px";
+}
+pinNav();
+addEventListener("resize", pinNav);
+addEventListener("load", pinNav);

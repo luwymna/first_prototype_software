@@ -34,7 +34,7 @@ h3,
 .logo,
 .quote {
    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Figtree, system-ui, sans-serif;
-   font-weight: 700;
+   font-weight: 100;
    letter-spacing: -.02em
 }
 
@@ -111,7 +111,33 @@ h2:focus {
 .breath {
    display: grid;
    place-items: center;
-   height: 210px
+   height: 160px;
+   margin-bottom: 0;
+}
+
+#snd button.opt {
+   background: var(--bs-body-bg);
+   border: 1px solid var(--line);
+   border-radius: 12px; /* Standardize radius */
+   padding: 0.8rem 1rem;
+   font-size: 1rem;
+   font-weight: 500;
+   color: var(--ink);
+   display: flex;
+   align-items: center;
+   text-align: left;
+   transition: all 0.2s ease;
+}
+
+#snd button.opt:hover {
+   border-color: var(--accent);
+   background: var(--soft);
+}
+
+#snd button.opt[aria-pressed="true"] {
+   background: var(--soft);
+   border-color: var(--accent);
+   color: var(--accent);
 }
 
 #orb {
@@ -195,11 +221,10 @@ h2:focus {
 .bar {
    max-width: 1080px;
    margin: 0 auto;
-   padding: 0 1rem;
-   min-height: 52px;
+   padding: .75rem 1rem;      /* space above and below, inside the bar */
    display: flex;
    align-items: center;
-   gap: 1rem;
+   gap: .5rem 1rem;           /* row gap, column gap */
    flex-wrap: wrap
 }
 
@@ -241,7 +266,7 @@ nav button[aria-current=true] {
 }
 
 .tools .btn {
-   border-radius: 980px;
+   border-radius: 8px;
    padding: .2rem .7rem
 }
 
@@ -249,8 +274,8 @@ nav button[aria-current=true] {
    nav {
       order: 3;
       flex-basis: 100%;
-      justify-content: flex-start;
-      padding-bottom: .4rem
+      justify-content: center; /* Centers the links on mobile */
+      padding-bottom: 0
    }
 
    .tools {
@@ -294,7 +319,7 @@ main {
 }
 
 .btn {
-   border-radius: 980px
+   border-radius: 8px
 }
 
 .opt {
@@ -304,7 +329,9 @@ main {
 
 .form-select,
 .form-control {
-   border-radius: 14px
+   border-radius: 8px; /* Sharper corners */
+   background-color: var(--bs-body-bg); 
+   border: 1px solid var(--line);
 }
 
 .alert-warning {
@@ -338,7 +365,7 @@ main {
 
 .big {
    font-size: clamp(2.4rem, 7vw, 3.8rem);
-   font-weight: 700;
+   font-weight: 100;
    line-height: 1;
    letter-spacing: -.03em
 }
@@ -352,14 +379,14 @@ main {
 
 .tile {
    border: 0;
-   border-radius: 28px;
+   border-radius: 20px;
    background: var(--bs-card-bg);
    color: var(--ink);
    padding: 1.75rem 1.5rem;
-   min-height: 150px;
+   min-height: 50px;
    text-align: left;
    font-size: 1.35rem;
-   font-weight: 600;
+   font-weight: 100;
    letter-spacing: -.01em;
    display: flex;
    align-items: flex-end;
@@ -373,7 +400,7 @@ main {
 
 .band {
    background: var(--soft);
-   border-radius: 28px;
+   border-radius: 20px;
    padding: 3rem 1.5rem;
    text-align: center;
    margin-bottom: 1rem
@@ -381,6 +408,7 @@ main {
 
 .band .quote {
    font-size: clamp(1.4rem, 3vw, 2rem);
+   font-weight: 100;
    max-width: 760px;
    margin: 0 auto
 }
@@ -408,10 +436,6 @@ main {
    margin: 0
 }
 
-.card textarea {
-   margin-bottom: 1rem
-}
-
 .card .breath {
    margin-bottom: 1rem
 }
@@ -435,48 +459,65 @@ main {
    --bs-dropdown-link-active-bg: var(--soft);
    --bs-dropdown-link-active-color: var(--ink);
    --bs-dropdown-border-color: var(--line);
-   box-shadow: 0 8px 24px rgba(20, 48, 58, .12)
+   --bs-dropdown-link-hover-bg: color-mix(in srgb, var(--soft) 55%, transparent);
+   --bs-dropdown-link-hover-color: var(--ink);
+   --bs-dropdown-padding-y: .5rem;
+   box-shadow: 0 12px 32px rgba(20, 48, 58, .18), 
+               0 4px 8px rgba(20, 48, 58, .08) !important;
+   translate: 0 12px !important; 
+   margin-top: 0 !important;
 }
 
 .dropdown-item {
-   padding: .5rem .9rem
+   padding: .65rem 1rem;
+   margin-bottom: .25rem;
 }
 
-/* native select (breathing pattern): rounded list in browsers that support customisable selects (Chrome/Edge 135+) */
-@supports (appearance:base-select) {
-
-   select.form-select,
-   select.form-select::picker(select) {
-      appearance: base-select
-   }
-
-   select.form-select::picker-icon {
-      display: none
-   }
-
-   select.form-select option::checkmark {
-      display: none
-   }
-
-   select.form-select::picker(select) {
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: .4rem;
-      background: var(--bs-body-bg);
-      color: var(--ink);
-      box-shadow: 0 8px 24px rgba(20, 48, 58, .12)
-   }
-
-   select.form-select option {
-      border-radius: 12px;
-      padding: .5rem .9rem
-   }
-
-   select.form-select option:checked {
-      background: var(--soft)
-   }
-
-   select.form-select option:hover {
-      background: var(--soft)
-   }
+.dropdown-menu li:last-child .dropdown-item {
+   margin-bottom: 0;
 }
+
+/* ---- sounds: tiles ---- */
+.sound-grid { 
+   display: grid; 
+   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+   gap: .75rem; margin-bottom: 1.5rem 
+}
+.sound { 
+   display: flex; 
+   align-items: center; 
+   gap: .85rem; 
+   padding: .9rem 1rem; 
+   margin: 0;
+   border: 1px solid var(--line); 
+   border-radius: 16px; 
+   background: var(--bs-body-bg);
+   color: var(--ink); 
+   font-weight: 500; 
+   text-align: left;
+   transition: border-color .2s, background .2s, transform .2s 
+}
+.sound:hover { border-color: var(--accent); transform: translateY(-1px) }
+.sound-ic { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
+  font-size: .7rem; padding-left: 2px; background: var(--soft); color: var(--accent) }
+.sound[aria-pressed="true"] { border-color: var(--accent); background: var(--soft) }
+.sound[aria-pressed="true"] .sound-ic { background: var(--accent); color: var(--bs-body-bg); padding-left: 0 }
+
+/* ---- volume: panel and slider ---- */
+.volume { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.25rem;
+  border-radius: 16px; background: var(--bs-body-bg); border: 1px solid var(--line) }
+.volume-label { flex: none; font-size: .85rem; color: var(--mute) }
+.volume-val { min-width: 3.5ch; text-align: right; font-size: .85rem; color: var(--mute); font-variant-numeric: tabular-nums }
+.vol-range { --v: 40%; flex: 1; -webkit-appearance: none; appearance: none; height: 6px; border-radius: 99px;
+  cursor: pointer; outline: none;
+  background: linear-gradient(to right, var(--accent) var(--v), var(--line) var(--v)) }
+.vol-range::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%;
+  background: #fff; border: 0; transition: transform .15s;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.3) }
+.vol-range::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: #fff; border: 0;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.3) }
+.vol-range::-moz-range-track { background: transparent }
+.vol-range:hover::-webkit-slider-thumb { transform: scale(1.1) }
+.vol-range:active::-webkit-slider-thumb { transform: scale(1.15) }
+.vol-range:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px }
+
