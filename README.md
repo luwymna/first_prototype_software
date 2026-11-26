@@ -65,9 +65,8 @@ a11y/               axe-core accessibility scan
 | Typeface | Google Fonts (Figtree) | `index.html` |
 
 ### 4. Reused techniques and concepts
-- 4-7-8 and box breathing patterns (established techniques).
-- Bubble pop, Memory match and Water ripples (well-known game ideas, own implementation).
-- Apple-style layout built from Bootstrap components.
+- 4-7-8 and box breathing patterns.
+- Bubble pop, Memory match and Water ripples.
 
 ### 5. Reused services and platforms
 - Vercel for hosting and deployment.
@@ -84,7 +83,7 @@ a11y/               axe-core accessibility scan
 - One page layout and one render cycle for all five tabs.
 
 ### Not reused (custom code)
-Trend thresholds, breathing timer, the three games, journal, home dashboard, supportive messages, draft Malay interface text, and the glue code connecting everything.
+Trend thresholds, breathing timer, the three games, journal, home dashboard, supportive messages, draft Malay interface text and the code connecting everything.
 
 ## Trend rule assumptions
 Rising or easing: regression slope of at least 2 points per check-in over the last 6 check-ins, with r-squared of at least 0.5. Sharp jump: an increase of 8 or more points since the previous check-in. These are project assumptions, not clinical standards.
@@ -96,11 +95,4 @@ npm test                      # unit tests
 npx playwright install chromium   # once
 npm run a11y                  # accessibility scan, English and Malay
 ```
-Also test by hand: use the whole app with only the keyboard, switch language on every tab, and try a screen reader.
-
-## Open items
-- Confirm each recording's licence on Freesound and keep the credit line in the page footer.
-- Confirm the citation and permission to use the Malay DASS-21.
-- Have a native speaker review the Malay interface text.
-- Verify the helpline numbers before each release (Befrienders KL 03-7627 2929, Talian Kasih 15999, emergency 999).
-- Have a counsellor or supervisor review the supportive messages and the trend thresholds.
+Also test by hand: use the whole app with only the keyboard, switch language on every tab and try a screen reader.
